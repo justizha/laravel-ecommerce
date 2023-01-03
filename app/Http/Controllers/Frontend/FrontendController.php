@@ -38,13 +38,11 @@ class FrontendController extends Controller
             {
                 return view('frontend.collections.products.view',compact('product','category'));
             }
-            else
-            {
+            else{
             return redirect()->back();
             }
             
-        }else
-        {
+        }else{
             return redirect()->back();
         }
     }
