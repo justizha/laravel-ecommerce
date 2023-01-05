@@ -1,6 +1,14 @@
 <div>
     <div class="py-3 py-md-5">
         <div class="container">
+            <div>
+                @if (session()->has('message'))
+                    <div class="alert alert-warning">
+                        {{ session('message') }}
+                    </div>
+                @endif
+            </div>
+
             <div class="row">
                 <div class="col-md-5 mt-3">
                     <div class="bg-white border">
@@ -16,7 +24,6 @@
                     <div class="product-view">
                         <h4 class="product-name">
                             {{ $product->name }}
-                            <label class="label-stock bg-success">In Stock</label>
                         </h4>
                         <hr>
                         <p class="product-path">
@@ -27,11 +34,32 @@
                             <span class="original-price">{{ $product->original_price }}</span>
                         </div>
                         <div class="">
+                        @if($product->productColors->count() > 0)
                             @if ($product->productColors)
                                 @foreach ($product->productColors as $item)
-                                    <input type="radio" name="colorSelection" value="{{ $item->id }}"> {{ $item->color->name }}
+                                {{-- <input type="radio" name="colorSelection" value="{{ $item->id }}"> {{ $item->color->name }} --}}
+                                <label class="colorSelectionLabel text-white" style="background-color:{{ $item->color->code }};" wire:click="colorSelected({{ $item->id }})">
+                                    {{ $item->color->name }}
+                                </label>
                                 @endforeach
                             @endif
+                            <div>
+
+                                @if ($this->prodColorSelectedQuantity == 'OutOfStock')
+                                        <label class="btn py-1  btn-sm bg-danger text-white">Out Of Stock</label>
+                                @elseif ($this->prodColorSelectedQuantity > 0)
+                                        <label class="btn py-1 btn-sm bg-success text-white">In Stock</label>
+                                @endif
+                            </div>
+
+                            @else
+                                @if($product->quantity)
+                                    <label class="btn py-1 btn-sm bg-success text-white">In Stock</label>
+                                @else
+                                    <label class="btn py-1  btn-sm bg-danger text-white">Out Of Stock</label>
+                                @endif
+                                
+                        @endif
                         </div>
                         <div class="mt-2">
                             <div class="input-group">
@@ -42,7 +70,14 @@
                         </div>
                         <div class="mt-2">
                             <a href="" class="btn btn1"> <i class="fa fa-shopping-cart"></i> Add To Cart</a>
-                            <a href="" class="btn btn1"> <i class="fa fa-heart"></i> Add To Wishlist </a>
+                            <button type="button" wire:click="addToWishlist({{ $product->id }})" class="btn btn1">
+                                <span wire:loading.remove>
+                                    <i class="fa fa-heart"></i> Add To Wishlist 
+                                </span>
+                                <span wire:loading wire:target="addToWishlist">
+                                    Adding..
+                                </span>
+                            </button>
                         </div>
                         <div class="mt-3">
                             <h5 class="mb-0">Small Description</h5>
