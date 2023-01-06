@@ -20,10 +20,10 @@ class WishlistShow extends Component
         Wishlist::where('user_id',auth()->user()->id)->where('id',$wishlistId)->delete();
         
         // session()->flash('message','Wishlist Item has Been Removed');s
-
+        $this->emit('wihlistAddedUpdated');
         $this->dispatchBrowserEvent('message',[
             'text' => 'Wishlist Item has Been Removed',
-            'type' => 'success',
+            'type' => 'success',    
             'status' => '200'
         ]);
     }

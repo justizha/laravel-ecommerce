@@ -14,7 +14,7 @@
                     </label>
                     @endforeach
                 </div>
-            </div>           '
+            </div>           
             @endif
             <div class="card mt-3">
                 <div class="card-header">

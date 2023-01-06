@@ -8,6 +8,8 @@ use Livewire\Component;
 
 class View extends Component
 {
+    public $category ,$product, $prodColorSelectedQuantity, $quantityCount = 1;
+
     public function colorSelected($productColorId)
     {
         // dd($productColorId);
@@ -39,12 +41,13 @@ class View extends Component
                     'user_id' => auth()->user()->id,
                     'product_id' => $productId
                 ]);
+                $this->emit('wihlistAddedUpdated');
                 session()->flash('message','Added Wishlist');
                 $this->dispatchBrowserEvent('message', ['newName' ,
                 'text' => 'Wislist Successfuly added', 
                 'type' => 'success',
                 'status' => 200]);
-            }
+            }   
         }
         else{
             session()->flash('message','Please Login To Continue');
@@ -57,7 +60,6 @@ class View extends Component
             return false;
         }
     }
-    public $category ,$product, $prodColorSelectedQuantity;
 
     public function mount($category,$product)
     {
@@ -65,6 +67,21 @@ class View extends Component
         $this->product = $product;        
     }
 
+    public function decrementQuantity()
+    {
+        if($this->quantityCount > 1)
+        {
+            $this->quantityCount--;
+        }
+    }
+
+    public function incrementQuantity()
+    {
+        if($this->quantityCount < 100){
+            $this->quantityCount++;     
+        }
+        
+    }
 
     public function render()
     {

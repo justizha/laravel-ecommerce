@@ -40,7 +40,7 @@
                                             <span wire:loading.remove wire:target='removeWishlist({{ $item->id }}'>
                                                 <i class="fa fa-trash"></i> Remove
                                             </span>
-                                            <span wire:loading wire:target='removeWishlist({{ $item->id }}'>
+                                            <span wire:loading wire:target='removeWishlist'>
                                                 <i class="fa fa-trash"></i>Removing..</span>
                                         </button>
                                     </div>
