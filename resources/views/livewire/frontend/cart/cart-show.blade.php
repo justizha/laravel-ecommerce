@@ -61,7 +61,10 @@
                                             </div>
                                         </div>
                                         <div class="col-md-1 my-auto">
-                                            <label class="price">{{ $item->product->selling_price * $item->quantity }}</label>
+                                            <label class="price">${{ $item->product->selling_price * $item->quantity }}</label>
+                                            @php
+                                                $totalPrice +=  $item->product->selling_price * $item->quantity
+                                            @endphp
                                         </div>
                                         <div class="col-md-2 col-5 my-auto">
                                             <div class="remove">
@@ -81,6 +84,22 @@
                         @empty
                                 <h3 class="mt-5 text-center font-bold font-weight-bold text-muted">No Product Has Been Added To Cart</h3>
                         @endforelse
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 my-md-auto mt-4">
+                    <h4>
+                        Get The Best Deals & Offers <a href="{{ url('/collections') }}">Shop Now</a>
+                    </h4>
+                </div>
+                <div class="col-md-4 mt-4">
+                    <div class="shadow-sm bg-white p-3">
+                        <h4>Total:
+                            <span class="float-end">${{ $totalPrice }}</span>
+                        </h4>
+                        <hr>
+                        <a href="{{ url('/checkout') }}" class="btn btn-warning w-100">Check Out</a>
                     </div>
                 </div>
             </div>
