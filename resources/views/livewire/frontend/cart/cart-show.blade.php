@@ -51,9 +51,9 @@
                                         <div class="col-md-2 col-7 my-auto">
                                             <div class="quantity">
                                                 <div class="input-group">
-                                                    <span class="btn btn1"><i class="fa fa-minus"></i></span>
-                                                    <input type="text" value="{{ $item->product->quantity }}" class="input-quantity" />
-                                                    <span class="btn btn1"><i class="fa fa-plus"></i></span>
+                                                    <button type="button" wire:loading.attr='disabled' wire:click='decrementQuantity({{ $item->id }})' class="btn btn1"><i class="fa fa-minus"></i></button>
+                                                    <input type="text" value="{{ $item->quantity }}" class="input-quantity" />
+                                                    <button type="button" wire:loading.attr='disabled' wire:click='incrementQuantity({{ $item->id }})' class="btn btn1"><i class="fa fa-plus"></i></button>
                                                 </div>
                                             </div>
                                         </div>
@@ -68,7 +68,7 @@
                                 </div>
                             @endif
                         @empty
-                            <div>No Product Has been added to cart</div>
+                                <h3 class="mt-5 text-center font-bold font-weight-bold text-muted">No Product Has Been Added To Cart</h3>
                         @endforelse
                     </div>
                 </div>

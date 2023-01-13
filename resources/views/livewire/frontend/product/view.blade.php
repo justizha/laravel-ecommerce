@@ -46,9 +46,9 @@
                             <div>
 
                                 @if ($this->prodColorSelectedQuantity == 'OutOfStock')
-                                        <label class="btn py-1  btn-sm bg-danger text-white">Out Of Stock</label>
+                                        <label class="btn py-1 mt-1 btn-sm bg-danger text-white">Out Of Stock</label>
                                 @elseif ($this->prodColorSelectedQuantity > 0)
-                                        <label class="btn py-1 btn-sm bg-success text-white">In Stock</label>
+                                        <label class="btn py-1 mt-1 btn-sm bg-success text-white">In Stock</label>
                                 @endif
                             </div>
 

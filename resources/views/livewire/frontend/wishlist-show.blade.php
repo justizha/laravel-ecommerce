@@ -49,7 +49,7 @@
                         </div>   
                         @endif
                         @empty
-                            <h3 class="text-center font-bold">No Wishlist Has Been Listed</h3>
+                            <h4 class="font-bold mt-5 text-center font-weight-bold text-muted">No Product Has Been Added To Wishlist</h4>
                         @endforelse
                             
                     </div>
