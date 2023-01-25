@@ -34,6 +34,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('wishlist',[\App\Http\Controllers\Frontend\WishlistController::class,'index']);
     Route::get('cart',[App\Http\Controllers\Frontend\CartController::class,'index']);
     Route::get('checkout',[App\Http\Controllers\Frontend\CheckoutController::class,'index']);
+    Route::get('orders',[App\Http\Controllers\Frontend\OrderController::class,'index']);
+    Route::get('orders/{orderId}',[App\Http\Controllers\Frontend\OrderController::class,'show']);
     
 });
 
