@@ -142,7 +142,7 @@
                 return actions.order.create({
                 purchase_units: [{
                     amount: {
-                    value: '{{ $ }}'//'{{ $this->totalProductAmount }}' // Can also reference a variable or function
+                    value: '{{ $this->totalProductAmount }}' // Can also reference a variable or function
                     }
                 }]
                 });
