@@ -47,6 +47,7 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
 
     Route::get('dashboard',[App\Http\Controllers\Admin\DashboardController::class, 'index']);
 
+
     Route::controller(App\Http\Controllers\Admin\SliderController::class)->group(function (){
         Route::get('/sliders','index');
         Route::get('/sliders/create','create');
@@ -88,5 +89,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){
         Route::get('/colors/{color}/edit','edit');
         Route::put('/colors/{color_id}','update');
         Route::get('/colors/{color_id}/delete','destroy');
+
+    Route::controller(App\Http\Controllers\Admin\OrderController::class)->group(function(){
+        Route::get('/orders','index');
+        Route::get('/orders/{orderId}','show');
+        });
     });
 });
